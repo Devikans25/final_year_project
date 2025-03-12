@@ -10,19 +10,21 @@
 <body>
 
     <header>
-        <h1>Voyago.!</h1>
-        <nav>
-            <ul>
-                <li class="dropdown" id="loginMenu">
-                    <button class="dropbtn">Login/Signup ▼</button>
-                    <div class="dropdown-content">
-                        <a href="customer-login.html">Customer Login<br><span>Login & check bookings</span></a>
-                        <a href="my-booking.html">My Booking<br><span>Manage your bookings here</span></a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
+        <h1>Voyago.!<br></h1>
+        <p><br>online travel agency|travel booking</p>
+    </header>
 
+    <main>
+        <div class="button-container">
+            <a href="wynd.html">
+                <button onclick="explore()">Explore Your Trip</button>
+            </a>
+            <a href="customer-login.html">
+                <button id="customerLogin">Customer Login</button>
+            </a>
+        </div>
+    
+        <!-- Profile Section (Hidden by Default) -->
         <div class="profile-dropdown" id="profileSection" style="display: none;">
             <img src="default-profile.png" id="userProfilePic" alt="User Profile Picture" class="profile-pic" onclick="toggleProfileMenu()">
             <span id="username">Guest</span>
@@ -30,21 +32,28 @@
                 <a href="#" onclick="logout()">Logout</a>
             </div>
         </div>
-    </header>
-    
-    <main>
-        <p>Wayanad, a scenic gem in Kerala, is known for its lush green landscapes, misty mountains, wildlife sanctuaries, and breathtaking waterfalls. A perfect destination for adventure seekers and nature lovers!</p>
-
-        <a href="wynd.html">
-            <button>Explore Your Trip</button>
-        </a>
-
-        <script>
-            function explore(url) {
-                window.location.href = "wynd.html";
-            }
-        </script>
     </main>
+    
+
+
+    <script>
+        function toggleLoginMenu() {
+            document.getElementById("loginMenu").classList.toggle("show");
+        }
+
+        function toggleProfileMenu() {
+            document.getElementById("profileMenu").classList.toggle("show");
+        }
+
+        function explore() {
+            window.location.href = "wynd.html";
+        }
+
+        function logout() {
+            alert("Logging out...");
+            document.getElementById("profileSection").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
