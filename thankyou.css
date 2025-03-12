@@ -1,0 +1,50 @@
+/* Header */
+header {
+    color: black;
+    text-align: left;
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Times New Roman', serif;
+}
+
+/* Thank You Section */
+.thank-you {
+    text-align: center;
+    padding: 50px;
+}
+
+.thank-you h2 {
+    color: #0073e6;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Homepage Button */
+.homepage-btn {
+    display: inline-block;
+    background-color: #ff5733;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.homepage-btn:hover {
+    background-color: #cc4627;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #f8f8f8;
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+}

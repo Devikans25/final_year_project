@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | Travel Planner</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="form-box">
+            <h2>Create Account</h2>
+            <form id="registerForm">
+                <input type="text" id="registerName" placeholder="Full Name" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+                <!-- Profile Picture Upload -->
+    <label for="profilePic">Upload Profile Picture</label>
+    <input type="file" id="profilePic" accept="image/*">
+
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="customer-login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    let name = document.getElementById("registerName").value.trim();
+    let email = document.getElementById("registerEmail").value.trim();
+    let password = document.getElementById("registerPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let profilePicInput = document.getElementById("profilePic");
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.some(user => user.email === email)) {
+        alert("Email already registered! Please use another or login.");
+        return;
+    }
+
+    // Handle Profile Picture Upload
+    let profilePicURL = "default-profile.png"; // Default picture
+    if (profilePicInput.files.length > 0) {
+        let reader = new FileReader();
+        reader.onload = function(event) {
+            profilePicURL = event.target.result;
+            saveUser(name, email, password, profilePicURL);
+        };
+        reader.readAsDataURL(profilePicInput.files[0]);
+    } else {
+        saveUser(name, email, password, profilePicURL);
+    }
+});
+
+function saveUser(name, email, password, profilePicURL) {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let newUser = { name, email, password, profilePic: profilePicURL };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registration successful! You can now log in.");
+    window.location.href = "customer-login.html";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (currentUser) {
+        document.getElementById("username").textContent = currentUser.name;
+        document.getElementById("userProfilePic").src = currentUser.profilePic || "default-profile.png";
+    }
+});
+
+    </script>
+</body>
+</html>

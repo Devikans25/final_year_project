@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayanad 2 Nights 3 Days Package</title>
+    <link rel="stylesheet" href="package1.css">
+    <script src="package1.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Wayanad 2 Nights 3 Days Package</h1>
+    </header>
+
+    <!-- Image Slider Section -->
+    <section class="slider">
+        <div class="slide fade">
+            <img src="image1.jpg" alt="Beautiful Wayanad View">
+        </div>
+        <div class="slide fade">
+            <img src="image2.jpg" alt="Waterfalls in Wayanad">
+        </div>
+        <div class="slide fade">
+            <img src="image3.jpg" alt="Lush Greenery of Wayanad">
+        </div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+
+        <script>
+            let slideIndex = 0;
+            showSlides();
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1}
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
+            }
+    
+            function plusSlides(n) {
+                slideIndex += n - 1;
+                showSlides();
+            }
+        </script>
+    </section>
+
+    <section class="overview">
+        <h2>Package Overview</h2>
+        <p>
+            Embark on an unforgettable journey to the mesmerizing landscapes of Wayanad, where nature’s beauty blends seamlessly with rich cultural heritage. This 2-night, 3-day tour is designed for travelers seeking a perfect mix of relaxation, adventure, and exploration.
+        </p>
+        <p>
+            Enjoy well-rated accommodations, guided tours, and explore attractions like <strong>Edakkal Caves</strong>, <strong>Pookode Lake</strong>, <strong>Soochipara Waterfalls</strong>, and <strong>Wayanad Wildlife Sanctuary</strong>.
+        </p>
+    </section>
+
+    <section class="hotel-details">
+        <h2>Hotel Details</h2>
+        <p><strong>Stay:</strong> 2 Nights in Kalpetta, 1 Night in Sulthan Bathery</p>
+        <p><strong>Hotel Category:</strong> 3-star or similar</p>
+    </section>
+
+    <section class="itinerary">
+        <h2>Day Wise Itinerary</h2>
+        <h3>Day 1: Arrival & Sightseeing</h3>
+        <p>- Visit Edakkal Caves, Pookode Lake, and Soochipara Waterfalls</p>
+        
+        <h3>Day 2: Wildlife & Adventure</h3>
+        <p>- Explore Wayanad Wildlife Sanctuary, Banasura Sagar Dam, and Karlad Lake</p>
+        
+        <h3>Day 3: Departure</h3>
+        <p>- Shopping at local markets before departure</p>
+    </section>
+
+    <section class="inclusions">
+        <h2>Inclusions</h2>
+        <ul>
+            <li>Accommodation in well-rated hotels</li>
+            <li>Daily breakfast</li>
+            <li>Sightseeing as per itinerary</li>
+            <li>Private vehicle for transfers</li>
+            <li>Entry fees to major attractions</li>
+        </ul>
+    </section>
+
+    <section class="exclusions">
+        <h2>Exclusions</h2>
+        <ul>
+            <li>Airfare or train tickets</li>
+            <li>Lunch and dinner</li>
+            <li>Personal expenses and tips</li>
+        </ul>
+    </section>
+
+    <section class="terms">
+        <h2>Terms & Conditions</h2>
+        <ul>
+            <li>Prices are subject to availability.</li>
+            <li>Booking confirmation requires advance payment.</li>
+            <li>Cancellation charges may apply.</li>
+        </ul>
+    </section>
+
+    <!-- Booking Form Popup -->
+    <section class="book-now">
+        <button onclick="openPopup()">Book Now</button>
+    </section>
+
+    <div id="bookingPopup" class="popup-overlay">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Want to Go For A Memorable Holiday?</h2>
+            
+            <label>Package Name</label>
+            <input type="text" value="Wayanad 2 Nights 3 Days Package" readonly>
+
+            <h3>Personal Details</h3>
+
+            <label>Name</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>Mobile No.</label>
+            <input type="text" placeholder="+91 Mobile No.">
+
+            <label>Email ID</label>
+            <input type="email" placeholder="Your E-Mail Address">
+
+            <div class="passenger-count">
+                <div>
+                    <label>Adult</label>
+                    <button onclick="changeCount('adult', -1)">-</button>
+                    <span id="adultCount">2</span>
+                    <button onclick="changeCount('adult', 1)">+</button>
+                </div>
+                <div>
+                    <label>Child</label>
+                    <button onclick="changeCount('child', -1)">-</button>
+                    <span id="childCount">0</span>
+                    <button onclick="changeCount('child', 1)">+</button>
+                </div>
+                <div>
+                    <label>Infant</label>
+                    <button onclick="changeCount('infant', -1)">-</button>
+                    <span id="infantCount">0</span>
+                    <button onclick="changeCount('infant', 1)">+</button>
+                </div>
+
+                <script>
+                    // Function to open the booking popup
+            function openPopup() {
+                document.getElementById("bookingPopup").style.display = "flex";
+            }
+            
+            // Function to close the booking popup
+            function closePopup() {
+                document.getElementById("bookingPopup").style.display = "none";
+            }
+            
+            // Function to increase or decrease passenger count
+            function changeCount(type, value) {
+                let countElement = document.getElementById(type + "Count");
+                let count = parseInt(countElement.textContent);
+            
+                if (count + value >= 0) {
+                    countElement.textContent = count + value;
+                }
+            }
+            
+                </script>
+                
+            </div>
+
+            <button class="enquire-btn" onclick="window.location.href='thankyou.html'">Continue Payment</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Voyago Travel. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

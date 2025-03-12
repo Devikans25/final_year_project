@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayanad Adventure Package</title>
+    <link rel="stylesheet" href="package2.css">
+    <script src="package2.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Wayanad Adventure Package</h1>
+    </header>
+
+    <!-- Wayanad Adventure Package Image Slider Section -->
+<section class="slider">
+    <div class="slide fade">
+        <img src="images1.jpg" alt="Beautiful Wayanad View">
+    </div>
+    <div class="slide fade">
+        <img src="images2.jpg" alt="Waterfalls in Wayanad">
+    </div>
+    <div class="slide fade">
+        <img src="images3.jpg" alt="Lush Greenery of Wayanad">
+    </div>
+    <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+    <button class="next" onclick="plusSlides(1)">&#10095;</button>
+
+
+        <script>
+            let slideIndex = 0;
+            showSlides();
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1}
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
+            }
+    
+            function plusSlides(n) {
+                slideIndex += n - 1;
+                showSlides();
+            }
+        </script>
+    </section>
+
+
+    <section class="package">
+        <h3>Wayanad Adventure Package</h3>
+        <p>3N Wayanad Camping & Trekking</p>
+        <div class="icons">
+            <span>🏕️ Camping</span> 
+            <span>🛏️ Trekking</span> 
+            <span>🔥 Bonfire</span> 
+            <span>🚗 Transfer</span>
+        </div>
+        <p class="price">Starting from <span class="discount">₹22,999</span> ₹15,000</p>
+    </section>
+
+    <section class="overview">
+        <h2>Package Overview</h2>
+        <p>
+            Experience an adventurous 3-night camping and trekking trip in Wayanad, surrounded by lush greenery, misty hills, and scenic landscapes. This package is designed for adventure lovers looking to explore the raw beauty of Wayanad.
+        </p>
+    </section>
+
+    <section class="activities">
+        <h2>Activities Included</h2>
+        <ul>
+            <li>Guided trekking to Chembra Peak</li>
+            <li>Night camping under the stars</li>
+            <li>Bonfire with music</li>
+            <li>Wildlife spotting at Wayanad Sanctuary</li>
+            <li>Local sightseeing</li>
+        </ul>
+    </section>
+
+    <section class="inclusions">
+        <h2>Inclusions</h2>
+        <ul>
+            <li>Accommodation in tented camps</li>
+            <li>All meals included</li>
+            <li>Experienced trek guides</li>
+            <li>Transportation for sightseeing</li>
+            <li>Adventure gear and safety equipment</li>
+        </ul>
+    </section>
+
+    <section class="exclusions">
+        <h2>Exclusions</h2>
+        <ul>
+            <li>Personal expenses</li>
+            <li>Travel insurance</li>
+            <li>Any additional activities not mentioned</li>
+        </ul>
+    </section>
+
+    <section class="book-now">
+        <button onclick="openPopup()">Book Now</button>
+    </section>
+
+    <div id="bookingPopup" class="popup-overlay">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Ready for an Adventure?</h2>
+            
+            <label>Package Name</label>
+            <input type="text" value="Wayanad Adventure Package" readonly>
+
+            <h3>Personal Details</h3>
+
+            <label>Name</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>Mobile No.</label>
+            <input type="text" placeholder="+91 Mobile No.">
+
+            <label>Email ID</label>
+            <input type="email" placeholder="Your E-Mail Address">
+
+            <button class="enquire-btn" onclick="window.location.href='thankyou.html'">Continue Payment</button>
+        </div>
+
+        <script>
+            // Function to open the booking popup
+    function openPopup() {
+        document.getElementById("bookingPopup").style.display = "flex";
+    }
+    
+    // Function to close the booking popup
+    function closePopup() {
+        document.getElementById("bookingPopup").style.display = "none";
+    }
+    
+    // Function to increase or decrease passenger count
+    function changeCount(type, value) {
+        let countElement = document.getElementById(type + "Count");
+        let count = parseInt(countElement.textContent);
+    
+        if (count + value >= 0) {
+            countElement.textContent = count + value;
+        }
+    }
+    
+        </script>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Voyago Travel. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

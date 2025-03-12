@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayanad & Coorg Package</title>
+    <link rel="stylesheet" href="package3.css">
+    <script src="package3.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>Wayanad & Coorg 5 Nights Package</h1>
+    </header>
+
+    <!-- Image Slider Section -->
+    <section class="slider">
+        <div class="slide fade">
+            <img src="images11.jpg" alt="Beautiful Wayanad View">
+        </div>
+        <div class="slide fade">
+            <img src="images12.jpg" alt="Waterfalls in Wayanad">
+        </div>
+        <div class="slide fade">
+            <img src="images13.jpg" alt="Lush Greenery of Wayanad">
+        </div>
+        <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+        <button class="next" onclick="plusSlides(1)">&#10095;</button>
+
+        <script>
+            let slideIndex = 0;
+            showSlides();
+    
+            function showSlides() {
+                let slides = document.getElementsByClassName("slide");
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {slideIndex = 1}
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
+            }
+    
+            function plusSlides(n) {
+                slideIndex += n - 1;
+                showSlides();
+            }
+        </script>
+    </section>
+
+    <!-- Package Section -->
+    <section class="package">
+        <h3>Wayanad & Coorg 5 Nights</h3>
+        <p>3N Wayanad | 2N Coorg</p>
+        <div class="icons">
+            <span>🏨 Hotel</span> 
+            <span>🚗 Sightseeing</span> 
+            <span>🍽️ Meals</span> 
+            <span>✈️ Flight</span>
+        </div>
+        <p class="price">Starting from <span class="discount">₹29,999</span> ₹2,999</p>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview">
+        <h2>Package Overview</h2>
+        <p>
+            Experience a wonderful 5-night trip covering Wayanad and Coorg. Enjoy lush greenery, scenic waterfalls, and breathtaking landscapes with comfortable stays and guided sightseeing.Embark on an unforgettable 5-night journey through the breathtaking landscapes of Wayanad and Coorg, two of South India’s most scenic hill stations. This adventure-packed trip offers a perfect blend of nature, relaxation, and cultural exploration.
+
+            Wayanad (3 Nights):
+            Nestled in the Western Ghats, Wayanad is a paradise for nature lovers and adventure seekers. Explore the mystical Edakkal Caves with their ancient rock carvings, take in the panoramic views from the heart-shaped Chembra Peak, and witness the mesmerizing beauty of Soochipara and Meenmutty Waterfalls. Experience wildlife spotting at Wayanad Wildlife Sanctuary and enjoy a peaceful boat ride at Banasura Sagar Dam.
+            
+            Coorg (2 Nights):
+            Known as the ‘Scotland of India,’ Coorg is famous for its lush coffee plantations, misty hills, and rich heritage. Visit the enchanting Abbey Falls, soak in the stunning sunset views from Raja’s Seat, and explore the historic Madikeri Fort. Take a spiritual break at the revered Omkareshwara Temple and get a taste of authentic Coorgi cuisine. Adventure lovers can also indulge in river rafting or off-road jeep safaris.
+            
+            With guided sightseeing, comfortable accommodations, and delicious meals, this package ensures a seamless travel experience, making it perfect for families, couples, and solo travelers alike. Get ready for an unforgettable journey through the hills of Kerala and Karnataka!
+        </p>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <h2>Activities Included</h2>
+        <ul>
+            <li>Visit to Banasura Sagar Dam & Edakkal Caves</li>
+            <li>Coorg Abbey Falls & Raja’s Seat</li>
+            <li>Wildlife spotting at Wayanad Sanctuary</li>
+            <li>Guided sightseeing in both destinations</li>
+        </ul>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="book-now">
+        <button onclick="openPopup()">Book Now</button>
+    </section>
+
+    <!-- Booking Popup -->
+    <div id="bookingPopup" class="popup-overlay">
+        <div class="popup">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Book Your Package</h2>
+
+            <label>Package Name</label>
+            <input type="text" value="Wayanad & Coorg 5 Nights Package" readonly>
+
+            <h3>Personal Details</h3>
+
+            <label>Name</label>
+            <input type="text" placeholder="Your Name">
+
+            <label>Mobile No.</label>
+            <input type="text" placeholder="+91 Mobile No.">
+
+            <label>Email ID</label>
+            <input type="email" placeholder="Your E-Mail Address">
+
+            <button class="enquire-btn" onclick="window.location.href='thankyou.html'">Proceed to Payment</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Voyago Travel. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openPopup() {
+            document.getElementById("bookingPopup").style.display = "flex";
+        }
+
+        function closePopup() {
+            document.getElementById("bookingPopup").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
