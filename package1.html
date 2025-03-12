@@ -47,6 +47,7 @@
                 showSlides();
             }
         </script>
+
     </section>
 
     <section class="overview">
@@ -63,7 +64,32 @@
         <h2>Hotel Details</h2>
         <p><strong>Stay:</strong> 2 Nights in Kalpetta, 1 Night in Sulthan Bathery</p>
         <p><strong>Hotel Category:</strong> 3-star or similar</p>
+    
+        <!-- Hotel Image Slider -->
+        <div class="hotels">
+            <label for="hotel-select">Hotels in Kalpetta:</label>
+            <ol>
+                <li>Banasura Hill Resort</li>
+                <li>Hotel Wayanad Stay</li>
+                <li>CASABLANCA WAYANAD Hotel Apartments & Rooms</li>
+                <li>The Woodlands Hotel</li>
+            </ol>
+            <ol>
+            <li>
+                <img src="hotel-room1.jpg" alt="Luxury Hotel Room">
+                <img src="hotel-room2.jpg" alt="Deluxe Suite">
+                <img src="hotel-room3.jpg" alt="Modern King Room">
+                <img src="food1.jpg" alt="Traditional Kerala Meals">
+                <img src="food2.jpg" alt="Continental Breakfast">
+                <img src="food3.jpg" alt="Luxury Dining Experience">
+            </li>
+            </ol>
+            <!-- Navigation Arrows -->
+            <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+            <button class="next" onclick="changeSlide(1)">&#10095;</button>
+        </div>
     </section>
+    
 
     <section class="itinerary">
         <h2>Day Wise Itinerary</h2>
@@ -149,39 +175,69 @@
                     <span id="infantCount">0</span>
                     <button onclick="changeCount('infant', 1)">+</button>
                 </div>
-
-                <script>
-                    // Function to open the booking popup
-            function openPopup() {
-                document.getElementById("bookingPopup").style.display = "flex";
-            }
-            
-            // Function to close the booking popup
-            function closePopup() {
-                document.getElementById("bookingPopup").style.display = "none";
-            }
-            
-            // Function to increase or decrease passenger count
-            function changeCount(type, value) {
-                let countElement = document.getElementById(type + "Count");
-                let count = parseInt(countElement.textContent);
-            
-                if (count + value >= 0) {
-                    countElement.textContent = count + value;
-                }
-            }
-            
-                </script>
-                
             </div>
 
-            <button class="enquire-btn" onclick="window.location.href='thankyou.html'">Continue Payment</button>
+            <button class="enquire-btn" onclick="validateForm()">Continue</button>
+
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 Voyago Travel. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Open & Close Popup Functions
+function openPopup() {
+    document.getElementById("bookingPopup").style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById("bookingPopup").style.display = "none";
+}
+
+// Change Passenger Count
+function changeCount(type, value) {
+    let countElement = document.getElementById(type + "Count");
+    let count = parseInt(countElement.innerText) + value;
+    if (count >= 0) {
+        countElement.innerText = count;
+    }
+}
+
+// Validate Form Before Proceeding
+function validateForm() {
+    let name = document.querySelector('input[placeholder="Your Name"]').value.trim();
+    let mobile = document.querySelector('input[placeholder="+91 Mobile No."]').value.trim();
+    let email = document.querySelector('input[placeholder="Your E-Mail Address"]').value.trim();
+    let adultCount = parseInt(document.getElementById("adultCount").innerText);
+
+    // Mobile Number Validation (Indian Format)
+    let mobilePattern = /^[6-9]\d{9}$/;
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name === "") {
+        alert("Please enter your name.");
+        return false;
+    }
+    if (!mobile.match(mobilePattern)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return false;
+    }
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+    if (adultCount < 1) {
+        alert("At least one adult must be selected.");
+        return false;
+    }
+
+    // Redirect to Thank You Page After Validation
+    window.location.href = "thankyou.html";
+}
+
+    </script>
 
 </body>
 </html>
