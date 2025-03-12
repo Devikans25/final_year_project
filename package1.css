@@ -19,7 +19,7 @@ header {
     text-transform: uppercase;
 }
 
-/* Image Slider Styling */
+/* Image Slider */
 .slider {
     position: relative;
     max-width: 100%;
@@ -63,62 +63,112 @@ header {
     font-size: 24px;
     border-radius: 5px;
     transition: 0.3s;
+    z-index: 10;
 }
 
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
+.prev { left: 10px; }
+.next { right: 10px; }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .slider {
-        height: 250px;
-    }
-
-    .prev, .next {
-        font-size: 18px;
-        padding: 8px 12px;
-    }
+    .slider { height: 250px; }
+    .prev, .next { font-size: 18px; padding: 8px 12px; }
 }
 
-
-section h2 {
-    color: #2d6a4f;
-    border-bottom: 2px solid #2d6a4f;
-    padding-bottom: 5px;
-    margin-bottom: 15px;
-}
-
-/* Hotel Details Section */
-.hotel-details {
-    background: grey;
-    color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+.hotel-details ol {
+    list-style: none;
+    padding: 0;
     text-align: center;
-    margin: 30px 0;
 }
 
-.hotel-details h2 {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-    margin: 30px 0;
+.hotel-details li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px; /* Space between images */
+    padding: 0;
 }
 
-.hotel-details p {
+.hotel-details img {
+    width: 200px; /* Adjust width as needed */
+    height: 150px; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures images fit well */
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.hotel-details img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .hotel-details img {
+        width: 150px;
+        height: 100px;
+    }
+}
+
+/* Hotel List Container */
+.hotels {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Label Styling */
+.hotels label {
     font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Hotel List Styling */
+.hotels ol {
+    list-style: none;
+    padding: 0;
+}
+
+.hotels li {
+    background-color: #ffffff;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-size: 16px;
     font-weight: 500;
+    color: #555;
+    transition: all 0.3s ease-in-out;
+}
+
+.hotels li:hover {
+    background-color: #ff9800;
+    color: white;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slides img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
 }
 
 /* Itinerary Section */
@@ -166,20 +216,10 @@ section h2 {
     .hotel-details, .itinerary {
         padding: 15px;
     }
-
-    .hotel-details h2, .itinerary h2 {
-        font-size: 22px;
-    }
-
-    .hotel-details p, .itinerary p {
-        font-size: 16px;
-    }
-
-    .itinerary h3 {
-        font-size: 20px;
-    }
+    .hotel-details h2, .itinerary h2 { font-size: 22px; }
+    .hotel-details p, .itinerary p { font-size: 16px; }
+    .itinerary h3 { font-size: 20px; }
 }
-
 
 /* List Styling */
 ul {
@@ -226,6 +266,7 @@ ul li {
     background: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 /* Popup Content */
@@ -298,28 +339,6 @@ ul li {
 .enquire-btn:hover {
     background: #218838;
 }
-
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .book-now {
-        padding: 30px 15px;
-    }
-
-    .book-now h2 {
-        font-size: 24px;
-    }
-
-    .book-now p {
-        font-size: 16px;
-    }
-
-    .book-now button {
-        font-size: 18px;
-        padding: 10px 20px;
-    }
-}
-
 
 /* Footer */
 footer {
