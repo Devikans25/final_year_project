@@ -10,14 +10,6 @@ body {
     text-align: center;
 }
 
-/* Responsive Background for Mobile Devices */
-@media (max-width: 768px) {
-    body {
-        background-size: contain; /* Prevents cropping */
-        background-attachment: scroll; /* Scrolls with content */
-    }
-}
-
 
 /* Header Styles */
 header {
