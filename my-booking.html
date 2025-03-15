@@ -3,31 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Booking - Voyago</title>
+    <title>My Bookings</title>
     <link rel="stylesheet" href="my-booking.css">
 </head>
 <body>
 
     <header>
-        <h1>My Booking</h1>
+        <h1>My Bookings</h1>
+        <div class="profile-dropdown">
+            <span id="username">Guest ▼</span>
+            <div class="profile-menu">
+                <a href="customer-login.html" onclick="logout()">Logout</a>
+            </div>
+        </div>
     </header>
 
-    <section class="booking-container">
-        <h2>Manage Your Bookings Here</h2>
-        <form action="view-bookings.html" method="POST">
-            <label>Booking Reference Number</label>
-            <input type="text" placeholder="Enter booking reference" required>
-
-            <label>Email</label>
-            <input type="email" placeholder="Enter your email" required>
-
-            <button type="submit">View Booking</button>
-        </form>
+    <section class="customer-details">
+        <h2>Customer Details</h2>
+        <p><strong>Name:</strong> <span id="customerName"></span></p>
+        <p><strong>Email:</strong> <span id="customerEmail"></span></p>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Voyago Travel. All Rights Reserved.</p>
-    </footer>
+    <section class="booking-details">
+        <h2>Confirmed Bookings</h2>
+        <div id="bookingsList">
+            <p>No bookings found.</p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if (!currentUser) {
+                alert("Please log in to view your bookings.");
+                window.location.href = "customer-login.html";
+                return;
+            }
+
+            document.getElementById("username").textContent = currentUser.name;
+            document.getElementById("customerName").textContent = currentUser.name;
+            document.getElementById("customerEmail").textContent = currentUser.email;
+
+            let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+            let userBookings = bookings.filter(booking => booking.email === currentUser.email);
+
+            let bookingsList = document.getElementById("bookingsList");
+            bookingsList.innerHTML = "";
+
+            if (userBookings.length > 0) {
+                userBookings.forEach(booking => {
+                    let bookingDiv = document.createElement("div");
+                    bookingDiv.classList.add("booking-card");
+                    bookingDiv.innerHTML = `
+                        <h3>${booking.packageName}</h3>
+                        <p><strong>Location:</strong> ${booking.location}</p>
+                        <p><strong>Check-in:</strong> ${booking.checkin}</p>
+                        <p><strong>Check-out:</strong> ${booking.checkout}</p>
+                        <p><strong>Price:</strong> ₹${booking.price}</p>
+                    `;
+                    bookingsList.appendChild(bookingDiv);
+                });
+            } else {
+                bookingsList.innerHTML = "<p>No confirmed bookings found.</p>";
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem("currentUser");
+            alert("You have logged out!");
+            window.location.href = "customer-login.html";
+        }
+    </script>
 
 </body>
 </html>
