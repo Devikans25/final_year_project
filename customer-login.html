@@ -25,21 +25,23 @@
 
     <script>
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            let email = document.getElementById("loginEmail").value;
-            let password = document.getElementById("loginPassword").value;
+    event.preventDefault();
 
-            let users = JSON.parse(localStorage.getItem("users")) || [];
-            let validUser = users.find(user => user.email === email && user.password === password);
+    let email = document.getElementById("loginEmail").value.trim();
+    let password = document.getElementById("loginPassword").value;
 
-            if (validUser) {
-                localStorage.setItem("currentUser", JSON.stringify(validUser));
-                alert("Login successful!");
-                window.location.href = "wynd.html";
-            } else {
-                alert("Invalid email or password. Try again!");
-            }
-        });
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let validUser = users.find(user => user.email === email && user.password === password);
+
+    if (validUser) {
+        localStorage.setItem("currentUser", JSON.stringify(validUser)); // Save logged-in user
+        alert("Login successful!");
+        window.location.href = "wynd.html"; // Redirect to homepage
+    } else {
+        alert("Invalid email or password. Try again!");
+    }
+});
+
     </script>
 </body>
 </html>
