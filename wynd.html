@@ -10,33 +10,65 @@
 
     <header>
         <h1>Exclusive Wayanad Tour Packages</h1>
+    
+      <!-- Profile Section -->
+<div class="profile-dropdown" id="profileSection">
+    <span id="username" onclick="toggleProfileMenu()">Guest ▼</span>
+
+    <!-- Dropdown Menu (Initially Hidden) -->
+    <div class="profile-menu" id="profileMenu">
+        <a href="customer-login.html" onclick="logout()">Logout</a>
+        <a href="my-booking.html">My Booking</a>
+    </div>
+</div>
+
+<script>
+    // Check if user is logged in and update profile
+    document.addEventListener("DOMContentLoaded", function() {
+        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        if (currentUser) {
+            document.getElementById("username").textContent = currentUser.name;
+        }
+    });
+
+    function logout() {
+        localStorage.removeItem("currentUser");
+        alert("You have logged out!");
+        window.location.href = "customer-login.html";
+    }
+
+    function toggleProfileMenu() {
+        document.getElementById("profileMenu").classList.toggle("show");
+    }
+</script>
+
+
+</div>
+
+
     </header>
+    
 
     <section class="tour-packages">
-
         <div class="package">
             <img src="package1.jpg" alt="Wayanad 2 Nights 3 Days Package" class="package-img">
             <h3>Wayanad 2 Nights 3 Days Package</h3>
             <p>2N Kalpetta | 1N Sulthan Bathery</p>
-            
             <div class="icons">
                 <span>🏨 Hotel</span> 
                 <span>🚗 Sightseeing</span> 
                 <span>🍽️ Meals</span> 
                 <span>🚌 Traveller | 🚗 Car</span>
             </div>
-            
             <p class="price">
                 Starting from <span class="discount">₹16,499</span> <span class="final-price">₹14,999</span> <br>
                 <small>(Per Person)</small>
             </p>
-        
             <button onclick="viewPackage('package1.html')">View Package</button>
         </div>
-        
 
         <div class="package">
-            <img src="package2.jpg" alt="Wayanad Adventure Package">
+            <img src="package2.jpg" alt="Wayanad Adventure Package" class="package-img">
             <h3>Wayanad Adventure Package</h3>
             <p>3N Wayanad Camping & Trekking</p>
             <div class="icons">
@@ -49,12 +81,11 @@
                 Starting from <span class="discount">₹22,999</span> <span class="final-price">₹20,399</span> <br>
                 <small>(Per Person)</small>
             </p>
-            
             <button onclick="viewPackage('package2.html')">View Package</button>
         </div>
 
         <div class="package">
-            <img src="package3.jpg" alt="Wayanad & Coorg 5 Nights Package">
+            <img src="package3.jpg" alt="Wayanad & Coorg 5 Nights Package" class="package-img">
             <h3>Wayanad & Coorg 5 Nights</h3>
             <p>3N Wayanad | 2N Coorg</p>
             <div class="icons">
@@ -67,16 +98,21 @@
                 Starting from <span class="discount">₹29,999</span> <span class="final-price">₹20,999</span> <br>
                 <small>(Per Person)</small>
             </p>
-            
             <button onclick="viewPackage('package3.html')">View Package</button>
         </div>
-
     </section>
 
     <script>
         function viewPackage(url) {
             window.location.href = url; // Redirects to the package page
         }
+
+        function toggleProfileMenu() {
+            document.getElementById("profileMenu").classList.toggle("show");
+        }
+
+
+
     </script>
 
 </body>
