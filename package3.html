@@ -94,14 +94,13 @@
         <button onclick="openPopup()">Book Now</button>
     </section>
 
-    <!-- Booking Popup -->
     <div id="bookingPopup" class="popup-overlay">
         <div class="popup">
             <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2>Book Your Package</h2>
-
+            <h2>Want to Go For A Memorable Holiday?</h2>
+            
             <label>Package Name</label>
-            <input type="text" value="Wayanad & Coorg 5 Nights Package" readonly>
+            <input type="text" value="Wayanad 2 Nights 3 Days Package" readonly>
 
             <h3>Personal Details</h3>
 
@@ -114,7 +113,29 @@
             <label>Email ID</label>
             <input type="email" placeholder="Your E-Mail Address">
 
-            <button class="enquire-btn" onclick="window.location.href='thankyou.html'">Proceed to Payment</button>
+            <div class="passenger-count">
+                <div>
+                    <label>Adult</label>
+                    <button onclick="changeCount('adult', -1)">-</button>
+                    <span id="adultCount">2</span>
+                    <button onclick="changeCount('adult', 1)">+</button>
+                </div>
+                <div>
+                    <label>Child</label>
+                    <button onclick="changeCount('child', -1)">-</button>
+                    <span id="childCount">0</span>
+                    <button onclick="changeCount('child', 1)">+</button>
+                </div>
+                <div>
+                    <label>Infant</label>
+                    <button onclick="changeCount('infant', -1)">-</button>
+                    <span id="infantCount">0</span>
+                    <button onclick="changeCount('infant', 1)">+</button>
+                </div>
+            </div>
+
+            <button class="enquire-btn" onclick="validateForm()">Continue</button>
+
         </div>
     </div>
 
@@ -123,13 +144,56 @@
     </footer>
 
     <script>
-        function openPopup() {
-            document.getElementById("bookingPopup").style.display = "flex";
-        }
+        // Open & Close Popup Functions
+function openPopup() {
+    document.getElementById("bookingPopup").style.display = "flex";
+}
 
-        function closePopup() {
-            document.getElementById("bookingPopup").style.display = "none";
-        }
+function closePopup() {
+    document.getElementById("bookingPopup").style.display = "none";
+}
+
+// Change Passenger Count
+function changeCount(type, value) {
+    let countElement = document.getElementById(type + "Count");
+    let count = parseInt(countElement.innerText) + value;
+    if (count >= 0) {
+        countElement.innerText = count;
+    }
+}
+
+// Validate Form Before Proceeding
+function validateForm() {
+    let name = document.querySelector('input[placeholder="Your Name"]').value.trim();
+    let mobile = document.querySelector('input[placeholder="+91 Mobile No."]').value.trim();
+    let email = document.querySelector('input[placeholder="Your E-Mail Address"]').value.trim();
+    let adultCount = parseInt(document.getElementById("adultCount").innerText);
+
+    // Mobile Number Validation (Indian Format)
+    let mobilePattern = /^[6-9]\d{9}$/;
+    let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (name === "") {
+        alert("Please enter your name.");
+        return false;
+    }
+    if (!mobile.match(mobilePattern)) {
+        alert("Please enter a valid 10-digit mobile number.");
+        return false;
+    }
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+    if (adultCount < 1) {
+        alert("At least one adult must be selected.");
+        return false;
+    }
+
+    // Redirect to Thank You Page After Validation
+    window.location.href = "thankyou.html";
+}
+
     </script>
 
 </body>
