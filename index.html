@@ -10,46 +10,21 @@
 <body>
 
     <header>
-        <h1>Voyago.!<br></h1>
-        <p><br>online travel agency|travel booking</p>
+        <h1>Voyago.!</h1>
+        <p>Online Travel Agency | Travel Booking</p>
     </header>
 
     <main>
         <div class="button-container">
             <a href="customer-login.html">
-                <button onclick="explore()">Explore Your Trip</button>
+                <button>Explore Your Trip</button>
             </a>
-        
-        </div>
-    
-        <!-- Profile Section (Hidden by Default) -->
-        <div class="profile-dropdown" id="profileSection" style="display: none;">
-            <img src="default-profile.png" id="userProfilePic" alt="User Profile Picture" class="profile-pic" onclick="toggleProfileMenu()">
-            <span id="username">Guest</span>
-            <div class="profile-menu" id="profileMenu">
-                <a href="#" onclick="logout()">Logout</a>
-            </div>
         </div>
     </main>
-    
-
 
     <script>
-        function toggleLoginMenu() {
-            document.getElementById("loginMenu").classList.toggle("show");
-        }
-
-        function toggleProfileMenu() {
-            document.getElementById("profileMenu").classList.toggle("show");
-        }
-
         function explore() {
-            window.location.href = "wynd.html";
-        }
-
-        function logout() {
-            alert("Logging out...");
-            document.getElementById("profileSection").style.display = "none";
+            window.location.href = "customer-login.html";
         }
     </script>
 
