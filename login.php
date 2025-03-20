@@ -1,25 +1,48 @@
 <?php
-require 'db.php';
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+header("Content-Type: application/json");
 
-session_start();
-$data = json_decode(file_get_contents("php://input"));
+// Database Connection
+$servername = "localhost";
+$username = "root";
+$password = ""; // Default is empty
+$database = "travel_planner";
 
-if (isset($data->email) && isset($data->password)) {
-    $email = $conn->real_escape_string($data->email);
-    
-    $query = "SELECT * FROM users WHERE email = '$email'";
-    $result = $conn->query($query);
+$conn = new mysqli($servername, $username, $password, $database);
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        if (password_verify($data->password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            echo json_encode(["message" => "Login successful", "user_id" => $user['id']]);
-        } else {
-            echo json_encode(["message" => "Invalid password"]);
-        }
-    } else {
-        echo json_encode(["message" => "User not found"]);
-    }
+// Check connection
+if ($conn->connect_error) {
+    die(json_encode(["error" => "Database connection failed: " . $conn->connect_error]));
 }
+
+// Get JSON input
+$data = json_decode(file_get_contents("php://input"), true);
+
+if (!isset($data['email']) || !isset($data['password'])) {
+    echo json_encode(["error" => "Invalid input"]);
+    exit;
+}
+
+$email = $conn->real_escape_string($data['email']);
+$password = $data['password'];
+
+// Fetch user from database
+$sql = "SELECT * FROM users WHERE email = '$email'";
+$result = $conn->query($sql);
+
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
+    
+    if (password_verify($password, $user['password'])) {
+        echo json_encode(["success" => "Login successful"]);
+    } else {
+        echo json_encode(["error" => "Invalid email or password"]);
+    }
+} else {
+    echo json_encode(["error" => "User not found"]);
+}
+
+$conn->close();
 ?>
