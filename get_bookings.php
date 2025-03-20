@@ -1,22 +1,32 @@
 <?php
-require 'db.php';
+include 'db.php'; // Ensure database connection is included
 
-$data = json_decode(file_get_contents("php://input"));
+$sql = "SELECT users.id AS user_id, users.name, bookings.package_id, bookings.date 
+        FROM bookings 
+        JOIN users ON bookings.user_id = users.id";
 
-if (isset($data->user_id)) {
-    $user_id = $conn->real_escape_string($data->user_id);
-    $query = "SELECT bookings.id, packages.title, bookings.date 
-              FROM bookings 
-              JOIN packages ON bookings.package_id = packages.id 
-              WHERE bookings.user_id = '$user_id'";
+$result = $conn->query($sql);
 
-    $result = $conn->query($query);
-
-    $bookings = [];
+if ($result->num_rows > 0) {
+    echo "<table border='1'>
+            <tr>
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Package ID</th>
+                <th>Date</th>
+            </tr>";
     while ($row = $result->fetch_assoc()) {
-        $bookings[] = $row;
+        echo "<tr>
+                <td>{$row['user_id']}</td>
+                <td>{$row['name']}</td>
+                <td>{$row['package_id']}</td>
+                <td>{$row['date']}</td>
+              </tr>";
     }
-
-    echo json_encode($bookings);
+    echo "</table>";
+} else {
+    echo "No bookings found.";
 }
+
+$conn->close();
 ?>
