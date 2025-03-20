@@ -10,44 +10,21 @@
 
     <header>
         <h1>Exclusive Wayanad Tour Packages</h1>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <script>
+            function viewPackage(url) {
+                window.location.href = url; // Redirects to the package page
+            }
     
-      <!-- Profile Section -->
-<div class="profile-dropdown" id="profileSection">
-    <span id="username" onclick="toggleProfileMenu()">Guest ▼</span>
-
-    <!-- Dropdown Menu (Initially Hidden) -->
-    <div class="profile-menu" id="profileMenu">
-        <a href="customer-login.html" onclick="logout()">Logout</a>
-        <a href="my-booking.html">My Booking</a>
-    </div>
-</div>
-
-<script>
-    // Check if user is logged in and update profile
-    document.addEventListener("DOMContentLoaded", function() {
-        let currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        if (currentUser) {
-            document.getElementById("username").textContent = currentUser.name;
-        }
-    });
-
-    function logout() {
-        localStorage.removeItem("currentUser");
-        alert("You have logged out!");
-        window.location.href = "customer-login.html";
-    }
-
-    function toggleProfileMenu() {
-        document.getElementById("profileMenu").classList.toggle("show");
-    }
-</script>
-
-
-</div>
-
-
+            function logout() {
+                localStorage.removeItem("currentUser"); // Remove user from localStorage
+                alert("You have been logged out.");
+                window.location.href = "customer-login.html"; // Redirect to login page
+            }
+        </script>
+    
     </header>
-    
+        
 
     <section class="tour-packages">
         <div class="package">
@@ -106,13 +83,6 @@
         function viewPackage(url) {
             window.location.href = url; // Redirects to the package page
         }
-
-        function toggleProfileMenu() {
-            document.getElementById("profileMenu").classList.toggle("show");
-        }
-
-
-
     </script>
 
 </body>
