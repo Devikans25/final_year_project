@@ -24,24 +24,43 @@
     </div>
 
     <script>
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
+        document.getElementById("loginForm").addEventListener("submit", async function(event) {
     event.preventDefault();
 
     let email = document.getElementById("loginEmail").value.trim();
-    let password = document.getElementById("loginPassword").value;
+    let password = document.getElementById("loginPassword").value.trim();
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let validUser = users.find(user => user.email === email && user.password === password);
+    if (!email || !password) {
+        alert("All fields are required!");
+        return;
+    }
 
-    if (validUser) {
-        localStorage.setItem("currentUser", JSON.stringify(validUser)); // Save logged-in user
-        alert("Login successful!");
-        window.location.href = "wynd.html"; // Redirect to homepage
-    } else {
-        alert("Invalid email or password. Try again!");
+    let userData = { email: email, password: password };
+
+    try {
+        let response = await fetch('http://localhost/travel_planner/login.php', { 
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userData)
+        });
+
+        let data = await response.json();
+
+        if (data.success) {
+            // Store user details in localStorage
+            localStorage.setItem("currentUser", JSON.stringify({ name: data.name, email: data.email }));
+
+            alert("Login successful!");
+            window.location.href = "wynd.html"; // Redirect to the dashboard
+        } else {
+            alert("Error: " + (data.error || "Invalid credentials"));
+        }
+    } catch (error) {
+        alert("An error occurred. Please check your network connection and try again.");
     }
 });
 
     </script>
+    
 </body>
 </html>
