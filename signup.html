@@ -13,11 +13,10 @@
         <div class="form-box">
             <h2>Create Account</h2>
             <form id="registerForm">
-                <input type="text" id="registerName" placeholder="Full Name" required>
-                <input type="email" id="registerEmail" placeholder="Email" required>
-                <input type="password" id="registerPassword" placeholder="Password" required>
+                <input type="text" id="registerName" name="username" placeholder="Full Name" required>
+                <input type="email" id="registerEmail" name="email" placeholder="Email" required>
+                <input type="password" id="registerPassword" name="password" placeholder="Password" required>
                 <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
-
                 <button type="submit">Sign Up</button>
             </form>
             <p>Already have an account? <a href="customer-login.html">Login here</a></p>
@@ -25,35 +24,55 @@
     </div>
 
     <script>
-       document.getElementById("registerForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    let name = document.getElementById("registerName").value.trim();
-    let email = document.getElementById("registerEmail").value.trim();
-    let password = document.getElementById("registerPassword").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (password !== confirmPassword) {
-        alert("Passwords do not match!");
-        return;
-    }
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    if (users.some(user => user.email === email)) {
-        alert("Email already registered! Please login.");
-        return;
-    }
-
-    let newUser = { name, email, password };
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
-
-    alert("Registration successful! You can now log in.");
-    window.location.href = "customer-login.html";
-});
-
-
+        document.getElementById("registerForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+    
+            let name = document.getElementById("registerName").value.trim();
+            let email = document.getElementById("registerEmail").value.trim();
+            let password = document.getElementById("registerPassword").value.trim();
+            let confirmPassword = document.getElementById("confirmPassword").value.trim();
+    
+            if (!name || !email || !password || !confirmPassword) {
+                alert("All fields are required!");
+                return;
+            }
+    
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+    
+            if (password.length < 8 || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[@$!%*?&]/.test(password)) {
+                alert("Password must be at least 8 characters, contain 1 uppercase letter, 1 number, and 1 special character.");
+                return;
+            }
+    
+            let userData = {
+                username: name,
+                email: email,
+                password: password
+            };
+    
+            try {
+                let response = await fetch('http://localhost/travel_planner/signup.php', { 
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userData)
+                });
+    
+                let data = await response.json();
+    
+                if (data.success) {
+                    alert("Account created successfully!");
+                    window.location.href = "customer-login.html";
+                } else {
+                    alert("Error: " + (data.error || "Something went wrong!"));
+                }
+            } catch (error) {
+                alert("Failed to connect to the server. Please try again later.");
+            }
+        });
     </script>
+    
 </body>
 </html>
